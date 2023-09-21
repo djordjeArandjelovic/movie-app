@@ -1,8 +1,6 @@
 import {
 	Drawer,
 	DrawerBody,
-	DrawerFooter,
-	DrawerHeader,
 	DrawerOverlay,
 	DrawerContent,
 	DrawerCloseButton,
@@ -10,19 +8,40 @@ import {
 	useDisclosure,
 	Button,
 	Text,
+	keyframes,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { BsChevronDoubleDown } from "react-icons/bs";
+
+const bounce = keyframes`
+  0 {
+    transform:  scale(1);
+  }
+  50% {
+    transform:  scale(1.2);
+  }
+  100% {
+	transform:  scale(1);
+  }
+`;
 
 function DrawerComponent() {
+	const animation = `${bounce} infinite 2s`;
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const btnRef = useRef();
 
 	return (
 		<>
-			<Button ref={btnRef} colorScheme="red" onClick={onOpen}>
-				Open
-			</Button>
+			<Button
+				children={<BsChevronDoubleDown />}
+				variant={"ghost"}
+				ref={btnRef}
+				fontSize={"3xl"}
+				colorScheme="red"
+				onClick={onOpen}
+				animation={animation}
+			/>
 			<Drawer
 				isOpen={isOpen}
 				placement="top"
@@ -77,7 +96,7 @@ function DrawerComponent() {
 									Tv Shows
 								</Text>
 							</Link>
-							<Link as={"button"} onClick={onClose} to={"/search"}>
+							{/* <Link as={"button"} onClick={onClose} to={"/search"}>
 								<Text
 									letterSpacing={"1px"}
 									fontSize={"lg"}
@@ -90,7 +109,7 @@ function DrawerComponent() {
 								>
 									Search
 								</Text>
-							</Link>
+							</Link> */}
 						</Flex>
 					</DrawerBody>
 				</DrawerContent>

@@ -10,7 +10,8 @@ import {
 import { useEffect, useState } from "react";
 import CardComponent from "../components/CardComponent";
 import PaginationComponent from "../components/PaginationComponent";
-import { getTrending } from "../services/api";
+import SearchComponent from "../components/SearchComponent";
+import { getTrending, searchAll } from "../services/api";
 
 const Home = () => {
 	const [data, setData] = useState([]);
@@ -19,6 +20,21 @@ const Home = () => {
 	// PAGINATION
 	const [activePage, setActivePage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
+
+	// SEARCH
+	const [input, setInput] = useState("");
+
+	const handleSearch = (value) => {
+		setInput(value);
+	};
+
+	useEffect(() => {
+		setIsLoading(true);
+		searchAll(input)
+			.then((res) => setData(res?.results))
+			.catch((err) => console.log(err.message))
+			.finally(setIsLoading(false));
+	}, [input]);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -34,7 +50,16 @@ const Home = () => {
 
 	return (
 		<Box mt={6} mb={7}>
-			<Heading>Trending now</Heading>
+			<Heading letterSpacing={"1px"} textAlign={"center"}>
+				Trending now
+			</Heading>
+			<Box width={"full"} mt={3}>
+				<SearchComponent
+					input={input}
+					handleSearch={handleSearch}
+					placeholder={"Search..."}
+				/>
+			</Box>
 			<Grid
 				templateColumns={{
 					lg: "repeat(5, 1fr)",

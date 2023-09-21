@@ -29,7 +29,7 @@ const CardComponent = ({ movie }) => {
 					padding={1.5}
 					fontSize={"sm"}
 				>
-					{movie?.vote_average.toFixed(1) * 10}
+					{movie?.vote_average.toFixed(1) * 10 || "NaN"}
 				</Badge>
 				<Image
 					mb={2}
