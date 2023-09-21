@@ -5,7 +5,7 @@ const apiKey = "f0ee1a65033e67391f5cb7dee14c36bd";
 
 // TRENDING
 
-export const getTrenging = async (page = 1) => {
+export const getTrending = async (page) => {
 	const res = await axios.get(
 		`${baseUrl}/trending/all/day?api_key=${apiKey}&page=${page}`
 	);
@@ -14,7 +14,7 @@ export const getTrenging = async (page = 1) => {
 
 // MOVIES
 
-export const getMovies = async (page = 1) => {
+export const getMovies = async (page) => {
 	const res = await axios.get(
 		`${baseUrl}/discover/movie?api_key=${apiKey}&page=${page}`
 	);
@@ -23,7 +23,7 @@ export const getMovies = async (page = 1) => {
 
 // TV SHOW
 
-export const getShows = async (page = 1) => {
+export const getShows = async (page) => {
 	const res = await axios.get(
 		`${baseUrl}/discover/tv?api_key=${apiKey}&page=${page}`
 	);

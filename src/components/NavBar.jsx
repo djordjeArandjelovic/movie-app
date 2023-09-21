@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Flex, Box, Text } from "@chakra-ui/react";
+import { Container, Flex, Box, Text, Show } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import DrawerComponent from "./DrawerComponent";
 
 const NavBar = () => {
 	return (
@@ -25,12 +26,19 @@ const NavBar = () => {
 							<span className="biggest">X</span>
 						</Box>
 					</Link>
-					<Flex gap={4} align={"center"}>
-						<Link to={"/"}>Home</Link>
-						<Link to={"/movies"}>Movies</Link>
-						<Link to={"/shows"}>TV Shows</Link>
-						<Link to={"/search"}>Search</Link>
-					</Flex>
+					<Show above="md">
+						<Flex gap={4} align={"center"}>
+							<Link to={"/"}>Home</Link>
+							<Link to={"/movies"}>Movies</Link>
+							<Link to={"/shows"}>TV Shows</Link>
+							<Link to={"/search"}>Search</Link>
+						</Flex>
+					</Show>
+					<Show below="md">
+						<Flex align={"center"}>
+							<DrawerComponent />
+						</Flex>
+					</Show>
 				</Flex>
 			</Container>
 		</Box>
