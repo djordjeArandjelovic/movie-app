@@ -12,9 +12,15 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import CardComponent from "../../components/CardComponent";
+import GenreMenu from "../../components/GenreMenu";
 import PaginationComponent from "../../components/PaginationComponent";
 import SearchComponent from "../../components/SearchComponent";
-import { getMovies, searchMovies } from "../../services/api";
+import {
+	getMovies,
+	getMoviesByGenre,
+	movieGenre,
+	searchMovies,
+} from "../../services/api";
 
 const Movies = () => {
 	const [movies, setMovies] = useState([]);
@@ -30,6 +36,20 @@ const Movies = () => {
 	const handleSearch = (value) => {
 		setInput(value);
 	};
+
+	// GENRE
+	const [genre, setGenre] = useState([]);
+	const [selectedGenreID, setSelectedGenreID] = useState(null);
+
+	const handleGenre = (genreId) => {
+		setSelectedGenreID(genreId);
+	};
+
+	useEffect(() => {
+		movieGenre()
+			.then((res) => setGenre(res.genres))
+			.catch((err) => console.log(err.results));
+	}, []);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -57,14 +77,17 @@ const Movies = () => {
 			<Heading letterSpacing={"1px"} textAlign={"center"}>
 				Discover Movies
 			</Heading>
-			<Box width={"full"} mt={3}>
-				<SearchComponent
-					movies={movies}
-					input={input}
-					setInput={setInput}
-					handleSearch={handleSearch}
-					placeholder={"Search movies..."}
-				/>
+			<Box width={"md"} margin={"auto"} mt={3}>
+				<HStack>
+					<SearchComponent
+						movies={movies}
+						input={input}
+						setInput={setInput}
+						handleSearch={handleSearch}
+						placeholder={"Search movies..."}
+					/>
+					<GenreMenu genre={genre} handleGenre={handleGenre} />
+				</HStack>
 			</Box>
 			<Grid
 				templateColumns={{

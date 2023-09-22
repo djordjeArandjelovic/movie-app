@@ -33,7 +33,7 @@ const CardComponent = ({ movie }) => {
 				</Badge>
 				<Image
 					mb={2}
-					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 				/>
 
 				<Flex padding={"0.1rem 1rem 0.5rem"} gap={1} flexDirection={"column"}>
