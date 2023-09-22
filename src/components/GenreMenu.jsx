@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { movieGenre } from "../services/api";
 
 const GenreMenu = ({ genre, handleGenre }) => {
 	return (
