@@ -39,6 +39,22 @@ export const searchMovies = async (searchText) => {
 	return res?.data;
 };
 
+// MOVIE GENRE
+
+export const movieGenre = async () => {
+	const res = await axios.get(`${baseUrl}/genre/movie/list?api_key=${apiKey}`);
+	return res?.data;
+};
+
+// GET MOVIES BY GENRE ??????? TODO:
+
+export const getMoviesByGenre = async (selectedGenreID) => {
+	const res = await axios.get(
+		`${baseUrl}/discover/movie?api_key=${apiKey}&genre_ids=${selectedGenreID}`
+	);
+	return res?.data;
+};
+
 // TV SHOW
 
 export const getShows = async (page) => {
@@ -54,5 +70,12 @@ export const searchShows = async (searchText) => {
 	const res = await axios.get(
 		`${baseUrl}/search/tv?api_key=${apiKey}&query=${searchText}`
 	);
+	return res?.data;
+};
+
+// TV GENRE
+
+export const tvGenre = async () => {
+	const res = await axios.get(`${baseUrl}/genre/tv/list?api_key=${apiKey}`);
 	return res?.data;
 };
