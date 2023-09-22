@@ -33,13 +33,14 @@ const Shows = () => {
 
 	// GENRE
 
-	const [genre, setGenre] = useState([]);
+	const [selectedGenre, setSelectedGenre] = useState(null);
+	// const [genre, setGenre] = useState([]);
 
-	useEffect(() => {
-		tvGenre()
-			.then((res) => setGenre(res.genres))
-			.catch((err) => console.log(err.results));
-	}, []);
+	// useEffect(() => {
+	// 	tvGenre()
+	// 		.then((res) => setGenre(res.genres))
+	// 		.catch((err) => console.log(err.results));
+	// }, []);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -53,7 +54,7 @@ const Shows = () => {
 
 	useEffect(() => {
 		setIsLoading(true);
-		getShows(activePage)
+		getShows(activePage, selectedGenre)
 			.then((res) => {
 				setShows(res?.results);
 				setActivePage(res?.page);
@@ -61,7 +62,7 @@ const Shows = () => {
 			})
 			.catch((err) => console.log(err.message))
 			.finally(setIsLoading(false));
-	}, [activePage]);
+	}, [activePage, selectedGenre]);
 	return (
 		<Box mt={6} mb={7}>
 			<Heading letterSpacing={"1px"} textAlign={"center"}>
@@ -74,7 +75,10 @@ const Shows = () => {
 						handleSearch={handleSearch}
 						placeholder={"Search Shows..."}
 					/>
-					<GenreMenu genre={genre} />
+					<GenreMenu
+						selectedGenre={selectedGenre}
+						onSelectGenre={(genre) => setSelectedGenre(genre)}
+					/>
 				</HStack>
 			</Box>
 			<Grid
@@ -101,7 +105,7 @@ const Shows = () => {
 							</CardBody>
 						</Card>
 					) : (
-						<CardComponent key={show.id} movie={show} />
+						<CardComponent key={show.id} movie={show} type={"tv"} />
 					)
 				)}
 			</Grid>

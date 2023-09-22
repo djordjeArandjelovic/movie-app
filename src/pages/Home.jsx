@@ -84,7 +84,11 @@ const Home = () => {
 							</CardBody>
 						</Card>
 					) : (
-						<CardComponent movie={movie} key={movie.id} />
+						<CardComponent
+							movie={movie}
+							key={movie?.id}
+							type={movie?.media_type}
+						/>
 					)
 				)}
 			</Grid>

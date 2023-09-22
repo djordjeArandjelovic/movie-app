@@ -9,8 +9,16 @@ import {
 } from "@chakra-ui/react";
 
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { movieGenre } from "../services/api";
 
-const GenreMenu = ({ genre, handleGenre }) => {
+const GenreMenu = ({ onSelectGenre, selectedGenre }) => {
+	const [genre, setGenre] = useState([]);
+	const [currentGenre, setCurrentGenre] = useState("");
+	useEffect(() => {
+		movieGenre()
+			.then((res) => setGenre(res.genres))
+			.catch((err) => console.log(err.results));
+	}, []);
 	return (
 		<Box marginLeft={3}>
 			<Menu>
@@ -20,11 +28,16 @@ const GenreMenu = ({ genre, handleGenre }) => {
 					as={Button}
 					rightIcon={<ChevronDownIcon />}
 				>
-					Genres
+					{currentGenre || "Genres"}
 				</MenuButton>
 				<MenuList>
 					{genre?.map((genre) => (
-						<MenuItem onClick={() => handleGenre(genre?.id)} key={genre?.id}>
+						<MenuItem
+							onClick={() => (
+								onSelectGenre(genre?.id), setCurrentGenre(genre?.name)
+							)}
+							key={genre?.id}
+						>
 							{genre?.name}
 						</MenuItem>
 					))}

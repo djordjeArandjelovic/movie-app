@@ -2,7 +2,7 @@ import { Badge, Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CardComponent = ({ movie }) => {
+const CardComponent = ({ movie, type }) => {
 	const voteColor = (vote) => {
 		let color = vote > 80 ? "green" : vote > 60 ? "yellow" : "red";
 		return color;
@@ -12,7 +12,7 @@ const CardComponent = ({ movie }) => {
 		return color;
 	};
 	return (
-		<Link key={movie?.id}>
+		<Link to={`/${type}/${movie?.id}`} key={movie?.id}>
 			<Box
 				bg={"blackAlpha.300"}
 				width={"100%"}

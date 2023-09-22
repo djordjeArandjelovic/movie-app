@@ -38,18 +38,15 @@ const Movies = () => {
 	};
 
 	// GENRE
-	const [genre, setGenre] = useState([]);
-	const [selectedGenreID, setSelectedGenreID] = useState(null);
+	// const [genre, setGenre] = useState([]);
+	const [selectedGenre, setSelectedGenre] = useState(null);
+	console.log(selectedGenre);
 
-	const handleGenre = (genreId) => {
-		setSelectedGenreID(genreId);
-	};
-
-	useEffect(() => {
-		movieGenre()
-			.then((res) => setGenre(res.genres))
-			.catch((err) => console.log(err.results));
-	}, []);
+	// useEffect(() => {
+	// 	movieGenre()
+	// 		.then((res) => setGenre(res.genres))
+	// 		.catch((err) => console.log(err.results));
+	// }, []);
 
 	useEffect(() => {
 		setIsLoading(true);
@@ -63,7 +60,7 @@ const Movies = () => {
 
 	useEffect(() => {
 		setIsLoading(true);
-		getMovies(activePage)
+		getMovies(activePage, selectedGenre)
 			.then((res) => {
 				setMovies(res?.results);
 				setActivePage(res?.page);
@@ -71,7 +68,8 @@ const Movies = () => {
 			})
 			.catch((err) => console.log(err.message))
 			.finally(setIsLoading(false));
-	}, [activePage]);
+	}, [activePage, selectedGenre]);
+
 	return (
 		<Box mt={6} mb={7}>
 			<Heading letterSpacing={"1px"} textAlign={"center"}>
@@ -86,7 +84,10 @@ const Movies = () => {
 						handleSearch={handleSearch}
 						placeholder={"Search movies..."}
 					/>
-					<GenreMenu genre={genre} handleGenre={handleGenre} />
+					<GenreMenu
+						selectedGenre={selectedGenre}
+						onSelectGenre={(genre) => setSelectedGenre(genre)}
+					/>
 				</HStack>
 			</Box>
 			<Grid
@@ -113,7 +114,7 @@ const Movies = () => {
 							</CardBody>
 						</Card>
 					) : (
-						<CardComponent key={movie.id} movie={movie} />
+						<CardComponent key={movie.id} movie={movie} type={"movie"} />
 					)
 				)}
 			</Grid>
