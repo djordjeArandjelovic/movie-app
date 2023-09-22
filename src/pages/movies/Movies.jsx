@@ -15,12 +15,7 @@ import CardComponent from "../../components/CardComponent";
 import GenreMenu from "../../components/GenreMenu";
 import PaginationComponent from "../../components/PaginationComponent";
 import SearchComponent from "../../components/SearchComponent";
-import {
-	getMovies,
-	getMoviesByGenre,
-	movieGenre,
-	searchMovies,
-} from "../../services/api";
+import { getMovies, searchMovies } from "../../services/api";
 
 const Movies = () => {
 	const [movies, setMovies] = useState([]);
@@ -38,15 +33,9 @@ const Movies = () => {
 	};
 
 	// GENRE
-	// const [genre, setGenre] = useState([]);
+
 	const [selectedGenre, setSelectedGenre] = useState(null);
 	console.log(selectedGenre);
-
-	// useEffect(() => {
-	// 	movieGenre()
-	// 		.then((res) => setGenre(res.genres))
-	// 		.catch((err) => console.log(err.results));
-	// }, []);
 
 	useEffect(() => {
 		setIsLoading(true);

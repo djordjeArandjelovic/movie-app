@@ -37,6 +37,7 @@ const MovieDetails = () => {
 							borderRadius={"lg"}
 							src={`https://image.tmdb.org/t/p/w200${details?.poster_path}`}
 						/>
+
 						<Flex
 							width={"50%"}
 							margin={"auto"}
@@ -45,7 +46,17 @@ const MovieDetails = () => {
 							gap={10}
 						>
 							<Heading>
-								{details?.title} <br />{" "}
+								{details?.title}
+								<br />
+								<Badge
+									borderRadius={"full"}
+									padding={2}
+									fontSize={"sm"}
+									colorScheme={"green"}
+								>
+									{details?.vote_average}
+								</Badge>{" "}
+								<br />
 								<Text fontSize={"sm"} as={"span"}>
 									{details?.tagline}
 								</Text>

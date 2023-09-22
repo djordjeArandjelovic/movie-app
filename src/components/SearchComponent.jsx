@@ -1,15 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsSearch } from "react-icons/bs";
-import {
-	Button,
-	FormControl,
-	Image,
-	Input,
-	InputGroup,
-	InputLeftElement,
-	InputRightElement,
-} from "@chakra-ui/react";
-import { useRef } from "react";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 const SearchComponent = ({ input, handleSearch, placeholder }) => {
 	return (
