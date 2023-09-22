@@ -22,14 +22,14 @@ const CardComponent = ({ movie }) => {
 				height={"100%"}
 			>
 				<Badge
-					bg={voteColor(movie?.vote_average.toFixed(1) * 10)}
-					color={voteTextColor(movie?.vote_average.toFixed(1) * 10)}
+					bg={voteColor(movie?.vote_average?.toFixed(1) * 10)}
+					color={voteTextColor(movie?.vote_average?.toFixed(1) * 10)}
 					position={"absolute"}
 					right={0}
 					padding={1.5}
 					fontSize={"sm"}
 				>
-					{movie?.vote_average.toFixed(1) * 10 || "NaN"}
+					{movie?.vote_average?.toFixed(1) * 10 || "NaN"}
 				</Badge>
 				<Image
 					mb={2}

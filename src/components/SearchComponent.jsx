@@ -12,13 +12,10 @@ import {
 import { useRef } from "react";
 
 const SearchComponent = ({ input, handleSearch, placeholder }) => {
-	const gameRef = useRef();
-
 	return (
 		<InputGroup>
 			<InputLeftElement children={<BsSearch />} />
 			<Input
-				ref={gameRef}
 				borderRadius={20}
 				fontWeight={"light"}
 				placeholder={placeholder}
