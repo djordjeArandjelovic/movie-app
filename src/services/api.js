@@ -55,6 +55,15 @@ export const movieGenre = async () => {
 	return res?.data;
 };
 
+// GET VIDEOS
+
+export const getVideos = async (mediaType, mediaID) => {
+	const res = await axios.get(
+		`${baseUrl}/${mediaType}/${mediaID}/videos?api_key=${apiKey}`
+	);
+	return res?.data;
+};
+
 // GET MOVIES BY GENRE ??????? TODO:
 
 export const getMoviesByGenre = async (selectedGenreID) => {

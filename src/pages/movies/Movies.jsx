@@ -35,7 +35,6 @@ const Movies = () => {
 	// GENRE
 
 	const [selectedGenre, setSelectedGenre] = useState(null);
-	console.log(selectedGenre);
 
 	useEffect(() => {
 		setIsLoading(true);
