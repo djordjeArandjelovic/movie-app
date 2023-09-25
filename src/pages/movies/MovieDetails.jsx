@@ -45,22 +45,27 @@ const MovieDetails = () => {
 							align={"center"}
 							gap={10}
 						>
-							<Heading>
-								{details?.title}
-								<br />
-								<Badge
-									borderRadius={"full"}
-									padding={2}
-									fontSize={"sm"}
-									colorScheme={"green"}
-								>
-									{details?.vote_average}
-								</Badge>{" "}
-								<br />
-								<Text fontSize={"sm"} as={"span"}>
-									{details?.tagline}
-								</Text>
-							</Heading>
+							<Flex align={"baseline"} gap={5}>
+								<Heading>
+									{details?.title}
+									<br />
+									<Badge
+										borderRadius={"full"}
+										padding={2}
+										fontSize={"sm"}
+										colorScheme={"green"}
+									>
+										{details?.vote_average.toFixed(1)}/10
+									</Badge>
+									<br />
+									<Text fontSize={"sm"} as={"span"}>
+										{details?.tagline}
+									</Text>
+								</Heading>
+								<Heading color={"red.500"} fontSize={"sm"}>
+									Runtime: {details?.runtime} mins
+								</Heading>
+							</Flex>
 							<Text>{details?.overview}</Text>
 						</Flex>
 					</HStack>
@@ -69,9 +74,9 @@ const MovieDetails = () => {
 					</Heading>
 					<Flex direction={"column"}>
 						<Text fontSize={"xl"}>
-							Release date:{" "}
+							Release date:
 							<Text ml={2} as={"span"} fontSize={"lg"} fontWeight={"bold"}>
-								{details?.release_date}
+								{new Date(details?.release_date).toLocaleDateString()}
 							</Text>
 						</Text>
 						<Text fontSize={"xl"}>
