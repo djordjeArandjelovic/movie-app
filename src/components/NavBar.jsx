@@ -1,9 +1,48 @@
 import React from "react";
-import { Container, Flex, Box, Text, Show, HStack } from "@chakra-ui/react";
+import {
+	Container,
+	Flex,
+	Box,
+	Text,
+	Show,
+	HStack,
+	Avatar,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
+	useToast,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import DrawerComponent from "./DrawerComponent";
+import { useAuth } from "../context/useAuth";
 
 const NavBar = () => {
+	const { user, googleSignIn, logout } = useAuth();
+	const toast = useToast();
+
+	const handleGoogle = async () => {
+		try {
+			await googleSignIn();
+			toast({
+				title: "Success.",
+				description: `Welcome`,
+				status: "success",
+				duration: 2500,
+				position: "top",
+			});
+		} catch (error) {
+			toast({
+				title: "Error.",
+				description: error?.message,
+				status: "error",
+				duration: 2500,
+				isClosable: true,
+				position: "top",
+			});
+		}
+	};
+
 	return (
 		<Box py={4} bg={"blackAlpha.200"}>
 			<Container maxW={"container.xl"}>
@@ -31,7 +70,27 @@ const NavBar = () => {
 							<Link to={"/"}>Home</Link>
 							<Link to={"/movies"}>Movies</Link>
 							<Link to={"/shows"}>TV Shows</Link>
-							{/* <Link to={"/search"}>Search</Link> */}
+							{user && (
+								<Menu>
+									<MenuButton>
+										<Avatar
+											size={"sm"}
+											name={user?.displayName || user?.email}
+										/>
+									</MenuButton>
+									<MenuList>
+										<Link to={"/watchlist"}>
+											<MenuItem>WatchList</MenuItem>
+										</Link>
+										<MenuItem onClick={logout}>Logout</MenuItem>
+									</MenuList>
+								</Menu>
+							)}
+							{!user && (
+								<Box as="button" onClick={handleGoogle}>
+									Login
+								</Box>
+							)}
 						</Flex>
 					</Show>
 					<Show below="md">

@@ -54,7 +54,7 @@ const TvDetails = () => {
 									{details?.vote_average.toFixed(1)}/10
 								</Badge>
 								<br />
-								<Text fontSize={"sm"} as={"span"}>
+								<Text as={"span"} fontSize={"sm"} as={"span"}>
 									{details?.tagline}
 								</Text>
 							</Heading>
@@ -65,20 +65,18 @@ const TvDetails = () => {
 						Details:
 					</Heading>
 					<Flex direction={"column"}>
-						<Text fontSize={"xl"}>
+						<Text>
 							First air date:
-							<Text ml={2} as={"span"} fontSize={"lg"} fontWeight={"bold"}>
+							<Text as={"span"} ml={2} fontSize={"lg"} fontWeight={"bold"}>
 								{new Date(details?.first_air_date).toLocaleDateString()}
 							</Text>
-							<Text>Seasons: {details?.number_of_seasons}</Text>
-							<Text>Episodes: {details?.number_of_episodes}</Text>
-							<Text>
-								Next episode air:{" "}
-								{details?.next_episode_to_air || "Not filming anymore"}
-							</Text>
 						</Text>
-						<Text></Text>
-						<Text></Text>
+						<Text>Seasons: {details?.number_of_seasons}</Text>
+						<Text> Episodes: {details?.number_of_episodes}</Text>
+						<Text>
+							Next episode air:
+							{details?.next_episode_to_air || "Not filming anymore"}
+						</Text>
 					</Flex>
 				</Box>
 			)}

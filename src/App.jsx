@@ -7,6 +7,7 @@ import Search from "./pages/Search";
 import MovieDetails from "./pages/movies/MovieDetails";
 import TvDetails from "./pages/shows/TvDetails";
 import AuthProvider from "./context/useAuth";
+import WatchList from "./pages/WatchList";
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 						<Route path="/search" element={<Search />} />
 						<Route path="/movie/:id" element={<MovieDetails />} />
 						<Route path="/tv/:id" element={<TvDetails />} />
+						<Route path="/watchlist" element={<WatchList />} />
 					</Routes>
 				</Layout>
 			</AuthProvider>
