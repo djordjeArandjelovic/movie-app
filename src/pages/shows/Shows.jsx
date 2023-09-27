@@ -31,6 +31,8 @@ const Shows = () => {
 		setInput(value);
 	};
 
+	console.log(shows);
+
 	// GENRE
 
 	const [selectedGenre, setSelectedGenre] = useState(null);
