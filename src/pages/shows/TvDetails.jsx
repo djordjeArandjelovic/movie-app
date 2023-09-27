@@ -54,7 +54,7 @@ const TvDetails = () => {
 									{details?.vote_average.toFixed(1)}/10
 								</Badge>
 								<br />
-								<Text as={"span"} fontSize={"sm"} as={"span"}>
+								<Text as={"span"} fontSize={"sm"}>
 									{details?.tagline}
 								</Text>
 							</Heading>

@@ -205,8 +205,6 @@ const MovieDetails = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [video, setVideo] = useState(null);
 
-	const moviesCollection = collection(db, "movies");
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -230,6 +228,8 @@ const MovieDetails = () => {
 
 		fetchData();
 	}, [id]);
+
+	const moviesCollection = collection(db, "movies");
 
 	const addMovie = async (movieData) => {
 		try {
@@ -301,7 +301,7 @@ const MovieDetails = () => {
 										{details?.vote_average.toFixed(1)}/10
 									</Badge>
 									<br />
-									<Text as={"span"} fontSize={"sm"} as={"span"}>
+									<Text as={"span"} fontSize={"sm"}>
 										{details?.tagline}
 									</Text>
 								</Heading>
