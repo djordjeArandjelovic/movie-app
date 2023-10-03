@@ -11,7 +11,7 @@ import {
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { movieGenre } from "../services/api";
 
-const GenreMenu = ({ onSelectGenre, selectedGenre }) => {
+const GenreMenu = ({ onSelectGenre }) => {
 	const [genre, setGenre] = useState([]);
 	const [currentGenre, setCurrentGenre] = useState("");
 	useEffect(() => {
