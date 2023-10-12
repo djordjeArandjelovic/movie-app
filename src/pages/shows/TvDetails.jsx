@@ -18,10 +18,16 @@ const TvDetails = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		getDetails("tv", id)
-			.then((res) => setDetails(res))
-			.catch((err) => console.log(err.results))
-			.finally(() => setIsLoading(false));
+		// getDetails("tv", id)
+		// 	.then((res) => setDetails(res))
+		// 	.catch((err) => console.log(err.results))
+		// 	.finally(() => setIsLoading(false));
+		try {
+			getDetails("tv", id);
+			setDetails(res?.data);
+		} catch (error) {
+			console.log(error);
+		}
 	}, []);
 	return (
 		<Box mt={6}>
